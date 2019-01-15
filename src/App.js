@@ -25,20 +25,19 @@ class App extends Component {
         axios.get(locationAPI).then(res=> {
             console.log(res.data);
             this.setState({locData: res.data[0].woeid}, () => this.api());
-            console.log(this.state.locData, 'response')
+            console.log(this.state.locData, '1st response')
         }).catch(function (error) {
             console.log(error);
         })
     }
 
     api = () => {
-        console.log('api clicked')
+        console.log('2nd api hit')
         let climateAPI = `https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/${this.state.locData}`;
-        console.log(climateAPI, 'API')
         axios.get(climateAPI).then(res=> {
             console.log(res.data);
             this.setState({climateData: res.data.consolidated_weather})
-            console.log(this.state.climateData, 'retreived data')
+            console.log(this.state.climateData, 'retreived final data')
         });
     }
 
